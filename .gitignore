@@ -1,0 +1,5 @@
+# 從當前目錄中移除 .DS_Store 文件
+git rm --cached .DS_Store
+
+# 從倉庫中移除所有的 .DS_Store 文件
+find . -name .DS_Store -print0 | xargs -0 git rm --ignore-unmatch
