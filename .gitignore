@@ -6,3 +6,6 @@ find . -name .DS_Store -print0 | xargs -0 git rm --ignore-unmatch
 
 # ignore env
 .env
+
+# ignore .DS_Store
+.DS_Store
