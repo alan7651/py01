@@ -1,0 +1,57 @@
+from dataclasses import dataclass
+
+@dataclass
+class Bmi():
+    name:str
+    weight:float
+    height:float
+
+    @property
+    def bmi(self):
+        return self.weight / (self.height /100)**2
+
+    def __repr__(self) -> str:
+        print_message = f"有關{self.__class__.__name__}：是一個實體，執行於記憶體位置[{hex(id(self.__class__))}]"
+        return print_message
+    
+    def status(self):
+        bmi = self.bmi
+        name = self.name
+        res_message = ""
+
+        if bmi < 18.5:
+            res_message = f"{name}您好！您的BMI為{bmi:.2f}, 體重過輕"
+        elif bmi < 24:
+            res_message = f"{name}您好！您的BMI為{bmi:.2f}, 屬於正常範圍"
+        elif bmi < 27:
+            res_message = f"{name}您好！您的BMI為{bmi:.2f},體重過重 "
+        elif bmi < 30:
+            res_message =  f"{name}您好！您的BMI為{bmi:.2f},屬於輕度肥胖 "
+        elif bmi < 35:
+            res_message = f"{name}您好！您的BMI為{bmi:.2f},屬於中度肥胖 "
+        else:
+            res_message = f"{name}您好！您的BMI為{bmi:.2f},屬於重度肥胖 "
+        
+        return res_message
+    
+def get_data():
+    
+    name = input("請輸入姓名:")
+    height = float(input("請輸入身高(cm):"))
+    weight = float(input("請輸入體重(kg):"))
+    data = (name,weight,height)
+    return data
+
+try:
+    data = get_data()
+    bmi_calculator = Bmi(*data) #把data 以*args 放入Bmi
+
+    print(bmi_calculator.status())
+    print(bmi_calculator)
+    
+
+except:
+    print("輸入格式錯誤")
+
+print("應用程式結束。")
+    
