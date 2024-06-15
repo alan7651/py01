@@ -8,9 +8,14 @@ st.title("計數器範例")
 if 'count' not in st.session_state:
     st.session_state['count'] = 0
 
-increment_pressed = st.button("✚1")
+increment_pressed = st.button("✚1", key="Key_has_pressed")
 
 if increment_pressed:
     st.session_state['count'] += 1
 
 st.write("Count: ", st.session_state.count)
+
+# 新增session_state 檢視區塊
+st.divider()
+st.caption("session_state:")
+st.session_state
