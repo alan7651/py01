@@ -4,6 +4,7 @@ st.title("計數器範例")
 # count = 0
 
 # 檢查 st.session_state 是否已有 'count'
+# 重新整理 st.session_state 會被清空
 if 'count' not in st.session_state:
     st.session_state['count'] = 0
 
