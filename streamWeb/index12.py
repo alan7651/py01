@@ -8,6 +8,7 @@ st.title("計數器範例")
 if 'count' not in st.session_state:
     st.session_state['count'] = 0
 
+# 若button 指定key 則會在sesosn_state 中建立 key值 (可不指定)
 increment_pressed = st.button("✚1", key="Key_has_pressed")
 
 if increment_pressed:
