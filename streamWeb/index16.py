@@ -33,13 +33,24 @@ with result_area:
 
 st.divider()
 
-st.markdown('''          
+st.markdown('''
+
+<styele>
+            .center {
+            width:auto;
+            display:table;
+            margin-left:auto;
+            margin-right:auto;
+            }
+            </style>   
+
+<div class="center">                   
 | 左对齐 | 右对齐 | 居中对齐 |
 | :-----| ----: | :----: |
 | 单元格 | 单元格 | 单元格 |
 | 单元格 | 单元格 | 单元格 |
 | 单元格 | 单元格 | 单元格 |
-                
+                </div>
 ''')
 
 
