@@ -58,23 +58,26 @@ with st.form("BMI calculator"):
 
 if submitted:
     result_string = BMI_calculator(height=st.session_state.height,weight=st.session_state.weight)
+    with st.container(border=True):
+        st.subheader(result_string)
+        st.markdown('''
+    <style>
+    .alignment{
+    text-align:left;       
+    }
+  
+    </style>
 
-    result_area = st.empty()
-    with result_area:
-       st.subheader(result_string)
+     |  | 身體質量指數(BMI)  $$(kg/m^2)$$ | 腰圍  (cm) |
+     | :-----| :----: | :----: |
+     | 體重過輕 | BMI ＜ 18.5 | - |
+     | 正常範圍 | 18.5≦BMI＜24 | - |
+     | 異常範圍 | <ul class="alignment"> <li>過重：24≦BMI＜27</li><li>輕度肥胖：27≦BMI＜30</li><li>中度肥胖：30≦BMI＜35</li><li>重度肥胖：BMI≧35</li></ul> | <ul class=alignment><li>男性：≧90公分</li><li>女性：≧80公分</li></ul> |      
+   
+    ''',unsafe_allow_html=True)
+     
+     
+        st.markdown('''
+     _參考來源[亞東醫院](https://depart.femh.org.tw/dietary/3OPD/BMI.htm)_
+     ''')
     
-
-    st.divider()
-    
-    st.markdown('''
-                     
-    |  | 身體質量指數(BMI)  $$(kg/m^2)$$ | 腰圍  (cm) |
-    | :-----| :----: | :----: |
-    | 體重過輕 | BMI ＜ 18.5 | - |
-    | 正常範圍 | 18.5≦BMI＜24 | - |
-    | 異常範圍 | * 過重：24≦BMI＜27  * 輕度肥胖：27≦BMI＜30  * 中度肥胖：30≦BMI＜35  * 重度肥胖：BMI≧35 | * 男性：≧90公分  * 女性：≧80公分 |      
-    ''')
-    
-    st.markdown('''
-    _參考來源[亞東醫院](https://depart.femh.org.tw/dietary/3OPD/BMI.htm)_
-    ''')
