@@ -51,6 +51,8 @@ with st.form("BMI calculator"):
  
      st.write("您的身高:",st.session_state.height,"公分")
      st.write("您的體重:",st.session_state.weight,"公斤")
+
+     
              
      submitted = st.form_submit_button(label="確認並計算", use_container_width=True,on_click=BMI_calculator )
 
