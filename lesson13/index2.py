@@ -1,6 +1,7 @@
 import requests
 from pydantic import BaseModel,Field,RootModel,field_validator,field_serializer
 import streamlit as st
+import json
 
 class Site(BaseModel):
     站點名稱:str = Field(alias="sna")
@@ -24,7 +25,8 @@ class Site(BaseModel):
     def abcd(cls,value):
         return f'{value[:4]}-{value[4:6]}-{value[6:8]} {value[8:10]}:{value[10:12]}:{value[12:]}'
     
-    @field_serializer('狀態')
+    @field_serializer('狀態',when_used='always')
+    @classmethod
     def abce(self,value):
         if value:
             return "營業中"
@@ -47,10 +49,9 @@ def download_youbike()->str:
         return response.text
 
 data_str = download_youbike()
-#root = Root.model_validate_json(data_str)
-data = data_str.model_dump()
+root = Root.model_validate_json(data_str)
+data = root.model_dump()
 
-# 從 data 中每個字典提出"行政區"欄位
 def ijk(value):
     return value['行政區']
 
