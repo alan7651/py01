@@ -2,6 +2,8 @@ import requests
 from pydantic import BaseModel,Field,RootModel,field_validator,field_serializer
 import streamlit as st
 
+DATA_URL = 'https://data.ntpc.gov.tw/api/datasets/010e5b15-3823-4b20-b401-b1cf000550c5/json?size=20'
+
 class Site(BaseModel):
     站點名稱:str = Field(alias="sna")
     行政區:str = Field(alias="sarea")
@@ -37,9 +39,8 @@ class Root(RootModel):
 
 @st.cache_data
 def download_youbike()->str:
-    youbike_url = 'https://data.ntpc.gov.tw/api/datasets/010e5b15-3823-4b20-b401-b1cf000550c5/json?size=20'
     try:
-        response = requests.get(youbike_url)
+        response = requests.get(DATA_URL)
     except Exception as e:
         print(e)
     else:
