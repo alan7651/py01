@@ -15,8 +15,7 @@ else:
     data = root.model_dump()
     areas:list[str] = list(set(map(lambda value:value['行政區'],data)))
 
-    st.title("新北市youbike各行政區站點資料")
-    tableContainer = st.container(border=False)
+    
     
     def area_change():
         sarea_name = st.session_state.sarea
@@ -25,11 +24,30 @@ else:
         for item in data:
             if item['行政區'] == sarea_name:
                 display_data.append(item)
-        with tableContainer:
-            st.subheader(sarea_name)
+
+        st.title("新北市youbike各行政區站點資料")
+            
+        st.subheader(sarea_name)
+        col1, col2 = st.columns([3, 2])
+        with col1:
             df1 = pd.DataFrame(display_data,
-                               columns=['站點名稱','日期時間','地址','總數','可借','可還'])
+                            columns=['站點名稱','總數','可借','可還'])
             st.dataframe(data=df1)
+
+        tableContainer = st.container(border=False)
+        with tableContainer:
+            
+                        
+            
+            df0 = pd.DataFrame(display_data,
+                               columns=['站點名稱','總數'])
+            
+            st.scatter_chart(df0,
+                             x='站點名稱',
+                             y='總數',
+                             color='#00ff00',
+                             size='總數')
+            
 
             df2 = pd.DataFrame(display_data,
                                columns=['站點名稱','總數','可借'])
@@ -45,11 +63,13 @@ else:
             st.scatter_chart(df3,
                              x='站點名稱',
                              y='可還',
+                             color='#ff0000',
                              size='可還')
 
 
 
     with st.sidebar:
         st.selectbox(":orange[請選擇行政區域:]",options=areas,on_change=area_change,key='sarea')
+    
     
     
