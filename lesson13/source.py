@@ -2,7 +2,8 @@ import requests
 from pydantic import BaseModel,Field,RootModel,field_validator,field_serializer
 import streamlit as st
 
-DATA_URL = 'https://data.ntpc.gov.tw/api/datasets/010e5b15-3823-4b20-b401-b1cf000550c5/json?size=20'
+DATA_SIZE = 20
+DATA_URL = f'https://data.ntpc.gov.tw/api/datasets/010e5b15-3823-4b20-b401-b1cf000550c5/json?size={str(DATA_SIZE)}'
 
 class Site(BaseModel):
     站點名稱:str = Field(alias="sna")
@@ -43,5 +44,6 @@ def download_youbike()->str:
         response = requests.get(DATA_URL)
     except Exception as e:
         print(e)
+        raise Exception("目前連線有問題，請稍候再試")
     else:
         return response.text
