@@ -17,7 +17,7 @@ else:
     areas:list[str] = list(set(map(ijk,data)))
 
     def change_area():
-        st.write(st.session_state.area)
+        st.write(st.session_state)
     
     if 'area' not in st.session_state:
         st.session_state['area'] = "八里區"
@@ -25,4 +25,4 @@ else:
     with st.sidebar:
         option = st.selectbox(":orange[行政區：]",options = areas,index=None,placeholder="請選擇行政區",on_change=change_area,key="area")
         if option != None:
-            st.write("您選擇:", option)
+            st.write("目前選擇:", option)
